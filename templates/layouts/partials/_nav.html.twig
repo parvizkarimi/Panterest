@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+	<div class="container ">
+		<a class="navbar-brand  " href="{{path('app_home')}}">Panterest</a>
+		{% if app.user %}
+			<a class="navbar-brand ms-auto" href="{{path('app_pins_create')}}">New Pin</a>
+		{% endif %}
+
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div
+			class="collapse navbar-collapse" id="navbarColor02">
+			{# <ul class="navbar-nav me-auto">
+			
+							<li class="nav-item">
+								<a class="nav-link" href="">Les Ingredients</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="">Les Recettes</a>
+							</li>
+			
+						</ul> #}
+
+			<ul class="navbar-nav ms-auto">
+
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account</a>
+					<div class="dropdown-menu">
+						{% if app.user %}
+						<a class="dropdown-item" href="{{path('app_account')}}">
+							My account</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="{{path('app_logout')}}">Logout</a>
+					{% else %}
+						<a class="dropdown-item" href="{{path('app_register')}}">Register</a>
+						<a class="dropdown-item" href="{{path('app_login')}}">Login</a>
+					{% endif %}
+				</li>
+			</div>
+		</li>
+	</ul>
+</div></div></nav>

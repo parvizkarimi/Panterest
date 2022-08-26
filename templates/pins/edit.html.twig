@@ -1,0 +1,16 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Edit Pin numéro
+	{{pin.id}}
+{% endblock %}
+
+{% block body %}
+
+	<h1>Edit pin numéro
+		{{pin.id}}</h1>
+
+{{ include ("pins/_form.html.twig" , { submitButtonText : 'Update Pin'}) }}
+
+
+
+{% endblock %}

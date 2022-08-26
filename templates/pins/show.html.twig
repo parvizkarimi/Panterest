@@ -1,0 +1,40 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Pin numéro
+	{{pin.id}}
+
+{% endblock %}
+
+{% block body %}
+
+	<div class="row text-center">
+		<div class="col-md-6 mx-auto">
+			<article class="pin bg-white rounded shadow">
+				<div class="rounded-top overflow-hidden">
+					<img src="{{(pin.imageName ? vich_uploader_asset(pin) : asset('images/image.jpg'))}}"  class="w-100 ">
+				</div>
+				<h5>
+					{{pin.title}}
+				</h5>
+				<p>
+					<small class="text-secondary">Submitted:
+						{{pin.createdAt|ago}}
+						By Rezdar Fouad</small>
+				</p>
+				<p class="text-break px-3">{{pin.description|slice(0, 150) ~ '...'}}</p>
+				{% if app.user==pin.user %}
+
+					<div class="pl-3 pb-3 ">
+						<a class="btn btn-light" href="{{path('app_pins_edit', {id: pin.id})}}">Editer</a>
+						<a class="btn btn-light" href="#" onclick="event.preventDefault(); confirm('Are you sure?') && document.getElementById('js-pin-delete-form').submit();">DELETE</a>
+						<form id="js-pin-delete-form" action="{{path('app_pins_delete', {id: pin.id})}}" method="post" style="display:none;">
+							<input type="hidden" name="csrf_token" value="{{csrf_token('pin_deletion_' ~ pin.id)}}">
+							<input type="hidden" name="_method" value="DELETE">
+						</form>
+					</div>
+				{% endif %}
+			</article>
+
+		</div>
+	</div>
+{% endblock %}
